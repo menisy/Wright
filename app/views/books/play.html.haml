@@ -1,0 +1,20 @@
+.start.btn.btn-primary
+  Start
+.game-container
+  .upper-box
+    
+
+  .text-box
+    = text_field_tag nil, nil, id: 'input'
+
+  
+  .nav.nav-pill
+    .btn.btn-success
+      Submit
+
+    .btn.btn-danger
+      Clear
+
+.image-holder
+  - @book.words.each_with_index do |word, i|
+    = image_tag word.image, id: "#{i}"

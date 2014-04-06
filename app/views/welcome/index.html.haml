@@ -1,0 +1,22 @@
+= link_to "Create a new book!", new_book_path
+
+.start.btn.btn-primary
+  Start
+.game-container
+  .upper-box
+    
+
+  .text-box
+    = text_field_tag nil, nil, id: 'input'
+
+  
+  .nav.nav-pill
+    .btn.btn-success
+      Submit
+
+    .btn.btn-danger
+      Clear
+
+.image-holder
+  - for i in (0..20)
+    = image_tag "/word#{i}.png", id: "#{i}"
