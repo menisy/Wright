@@ -1,4 +1,7 @@
-= link_to "Create a new book!", new_book_path
+
+= link_to new_book_path do
+  .btn.btn-success
+    + Create a new book!
 
 .start.btn.btn-primary
   Start
@@ -16,7 +19,3 @@
 
     .btn.btn-danger
       Clear
-
-.image-holder
-  - for i in (0..20)
-    = image_tag "/word#{i}.png", id: "#{i}"
