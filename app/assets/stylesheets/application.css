@@ -56,3 +56,18 @@
   visibility: hidden;
   height: 0px;
 }
+.counter{
+  position: absolute;
+  top: 140px;
+  left: 44%;
+}
+.counter h1{
+  opacity: 0.0;
+  position: absolute;
+}
+.two{
+  margin-top: 20px;
+}
+.three{
+  margin-top: 60px;
+}

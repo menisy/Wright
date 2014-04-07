@@ -5,6 +5,13 @@
 
 <%= image_tag @book.attachment %>
 
+
+<h1>Whole Text:</h1>
+
+<p>
+  <%= @book.whole_text %>
+</p>
+
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @book.name %></dd>
@@ -26,7 +33,9 @@
               :class => 'btn btn-danger' %>
 </div>
 <%= link_to 'Generate words', generate_words_book_path(@book), class: 'btn btn-success' %>
-<%= link_to 'Play!', play_book_path(@book), class: 'btn btn-success' %>
+<% if @book.playable? %>
+  <%= link_to 'Play!', play_book_path(@book), class: 'btn btn-success' %>
+<% end %>
 <div>
   <% @book.words.each do |word| %>
     <%= image_tag word.image %>

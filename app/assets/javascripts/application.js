@@ -21,6 +21,9 @@ $(document).ready( function(){
   counter = -1;
   $('.start').click(function(){
     $(this).fadeOut(200);
+    $(".one").queue(false, true).animate({opacity: 1.0, left: +100}, 200).animate({opacity: 0.0, left: +100}, 100);
+    $(".two").queue(false, true).animate({opacity: 1.0, left: -100}, 200).animate({opacity: 0.0, left: -100}, 100);
+    $(".three").queue(false, true).animate({opacity: 1.0, left: +100}, 200).animate({opacity: 0.0, left: +100}, 100);
     $('#input').focus();
     start(counter);
   });
@@ -42,11 +45,11 @@ function start(){
 }
 
 function moveWord(){
-  y = y + 7;
-  currentWord.css('top',y+'px');
-  if(y > $('.upper-box').height()){
+  if(y + 30 > $('.upper-box').height()){
     clearAndMove();
   }
+  y = y + 8 - currentFactor;
+  currentWord.css('top',y+'px');
 }
 
 function clearAndMove(){
@@ -58,6 +61,7 @@ function moveNewWord(){
   y = 0;
   counter = counter + 1;
   currentWord = $('.image-holder img#'+counter).remove();
+  currentFactor = currentWord.width() * 0.3;
   $('.upper-box').append(currentWord);
   x = Math.random() * 400;
   currentWord.css('left', x+'px');
