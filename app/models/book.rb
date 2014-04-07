@@ -2,13 +2,13 @@ require 'tesseract'
 require 'RMagick'
 
 class Book < ActiveRecord::Base
+  include Magick
   has_attached_file :attachment
   has_many :words
   validates_attachment_content_type :attachment, :content_type => /\Aimage\/.*\Z/
 
 
   def generate_words
-      include Magick
     image_path = attachment.path
 
     e = Tesseract::Engine.new {|e|
