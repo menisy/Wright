@@ -10,11 +10,17 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    if params[:reload]
+      @reload = true
+    end
   end
 
   def generate_words
-    @book.generate_words
-    redirect_to book_path(@book), notice: 'Generated words successfully'
+    @book.destroy_words
+    Thread.new{
+      @book.generate_words
+    }
+    redirect_to book_path(@book, reload: true), notice: "Words will be generated shortly\nPlease wait till the page reloads!"
   end
 
   def play

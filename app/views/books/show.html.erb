@@ -43,3 +43,11 @@
     <br>
   <% end %>
 </div>
+
+<% if @reload %>
+  <script>
+    $(document).ready(function(){
+      setTimeout('window.location.href="<%= book_url(@book) %>"',2*60000);
+    });
+  </script>
+<% end %>

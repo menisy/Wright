@@ -11,12 +11,14 @@ class Book < ActiveRecord::Base
     words != []
   end
 
+  def destroy_words
+    words.map(&:destroy)
+  end
+
 
   def generate_words
 
     logger.error "Starting Generating ----------------------"
-
-    words.map(&:destroy)
 
     image_path = attachment.path
 
@@ -37,7 +39,7 @@ class Book < ActiveRecord::Base
 
     image = Image.read(image_path).first
 
-    self.whole_text = e.text_for(image_path)
+    self.whole_text = e.text_for(image_path) if whole_text.blank?
 
     self.save
 
