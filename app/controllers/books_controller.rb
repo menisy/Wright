@@ -14,7 +14,7 @@ class BooksController < ApplicationController
 
   def generate_words
     @book.generate_words
-    redirect_to :back, notice: 'Generated words successfully'
+    redirect_to book_path(@book), notice: 'Generated words successfully'
   end
 
   def play
