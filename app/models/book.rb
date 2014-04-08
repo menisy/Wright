@@ -14,6 +14,8 @@ class Book < ActiveRecord::Base
 
   def generate_words
 
+    logger.error "Starting Generating ----------------------"
+
     words.map(&:destroy)
 
     image_path = attachment.path
@@ -23,17 +25,23 @@ class Book < ActiveRecord::Base
       e.blacklist = '|'
     }
 
+    logger.error "Initiated tesseract ----------------------"
+
     boxes = []
     ocr_words = []
     e.each_word_for(image_path) do |word|
      boxes << word.bounding_box
     end
 
+    logger.error "Done bounding ----------------------"
+
     image = Image.read(image_path).first
 
     self.whole_text = e.text_for(image_path)
 
     self.save
+
+    logger.error "Starting to save ----------------------"
 
     boxes.each_with_index do |box, i|
       b = image.crop(box.x, box.y, box.width, box.height);
