@@ -38,8 +38,10 @@ class Book < ActiveRecord::Base
     boxes.each_with_index do |box, i|
       b = image.crop(box.x, box.y, box.width, box.height);
       f = b.write("#{Rails.root}/public/word#{i}.png")
-      word = words.build ocr_text: e.text_for(f.filename)
+      word = words.build
+      word.ocr_text = e.text_for(f.filename) if lang == 'eng'
       word.image = open f.filename
+      word.image_file_name = "book#{id}word#{i}.png"
       word.save
     end
   end
