@@ -9,8 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  *= require_bootstrap
+ *= require_tree .
  */
 
 
@@ -23,6 +23,7 @@
   border: 1px solid #eee;
   box-shadow: 2px 2px 10px #7C7C7C;
   border-radius: 5px;
+  background-color: #fff;
 }
 .game-container img{
   min-height: 20px;
@@ -36,6 +37,75 @@
 .game-container .btn{
   box-shadow: 2px 2px 10px #7C7C7C;
 }
+.game-container {
+    -webkit-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    -kthtml-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
+
+@keyframes changeShadow {
+  0% {
+    -webkit-box-shadow: 1px 1px 20px #CC374D;
+    -moz-box-shadow: 1px 1px 20px #CC374D;
+    box-shadow: 1px 1px 20px #CC374D;
+  }
+
+  50% {
+    -webkit-box-shadow: 1px 1px 7px #CC374D;
+    -moz-box-shadow: 1px 1px 7px #CC374D;
+    box-shadow: 1px 1px 7px #CC374D;
+  }
+}
+@-webkit-keyframes changeShadow {
+  0% {
+    -webkit-box-shadow: 1px 1px 20px #CC374D;
+    -moz-box-shadow: 1px 1px 20px #CC374D;
+    box-shadow: 1px 1px 20px #CC374D;
+  }
+
+  50% {
+    -webkit-box-shadow: 1px 1px 7px #CC374D;
+    -moz-box-shadow: 1px 1px 7px #CC374D;
+    box-shadow: 1px 1px 7px #CC374D;
+  }
+}
+@-moz-keyframes changeShadow {
+  0% {
+    -webkit-box-shadow: 1px 1px 20px #CC374D;
+    -moz-box-shadow: 1px 1px 20px #CC374D;
+    box-shadow: 1px 1px 20px #CC374D;
+  }
+
+  50% {
+    -webkit-box-shadow: 1px 1px 7px #CC374D;
+    -moz-box-shadow: 1px 1px 7px #CC374D;
+    box-shadow: 1px 1px 7px #CC374D;
+  }
+}
+@-o-keyframes changeShadow {
+  0% {
+    -webkit-box-shadow: 1px 1px 20px #CC374D;
+    -moz-box-shadow: 1px 1px 20px #CC374D;
+    box-shadow: 1px 1px 20px #CC374D;
+  }
+
+  50% {
+    -webkit-box-shadow: 1px 1px 7px #CC374D;
+    -moz-box-shadow: 1px 1px 7px #CC374D;
+    box-shadow: 1px 1px 7px #CC374D;
+  }
+}
+
+.shadow {
+  -webkit-animation: changeShadow 1s infinite ease-in; /* Safari 4+ */
+  -moz-animation:    changeShadow 1s infinite ease-in; /* Fx 5+ */
+  -o-animation:      changeShadow 1s infinite ease-in; /* Opera 12+ */
+  animation:         changeShadow 1s infinite ease-in; /* IE 10+ */
+}
+
 .upper-box{
   height: 87%;
   margin: 3px;
@@ -53,7 +123,7 @@
   width: 95%;
 }
 .image-holder{
-  visibility: hidden;
+  display: none;
   height: 0px;
 }
 .counter{
@@ -65,9 +135,76 @@
   opacity: 0.0;
   position: absolute;
 }
+.one, .two, .three, .go{
+  font-size: 3em;
+  text-align: center;
+}
+.go{
+  left: -30px;
+}
 .two{
   margin-top: 20px;
 }
 .three{
   margin-top: 60px;
+}
+#main-container{
+  padding:30px 20px 10px 20px;
+  box-shadow: -1px 0px 10px #222;
+  min-height: 99% !important;
+}
+.word-container{
+  padding: 3px;
+  display: inline-block;
+  border: 1px solid #7FFF24;
+  border-radius: 3px;
+  margin-top: 2px;
+  color: #7FFF24;
+}
+.words{
+  padding: 10px 0px;
+}
+.rtl{
+  direction: rtl;
+}
+.center{
+  width: 30%;
+  margin: 10px auto;
+}
+.start{
+  width: 90%;
+  margin: 0px auto;
+}
+.upload-list{
+  list-style: none;
+  padding-top: 5px;
+}
+.upload-list li{
+  padding: 10px;
+  display: block;
+  height: 40px;
+  width: 70%;
+  border: 1px solid;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+.upload-list li div{
+  float: right;
+  top: -5px;
+  position: relative;
+}
+.upload-list li p{
+  display: inline-block;
+  float: left;
+  padding-top: 10px;
+}
+.thumb{
+  display: inline-block;
+  height: 40px;
+  width:40px;
+  margin-right: 10px;
+  overflow: hidden;
+}
+.browse{
+  display: inline-block;
 }

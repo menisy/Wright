@@ -13,24 +13,44 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
+//= require jquery-fileupload/basic
 //= require_tree .
 
 
 $(document).ready( function(){
   counter = -1;
-  $('.start').click(function(){
+  words = [];
+
+  $('#click-upload').click(function(e){
+    e.preventDefault();
+    $('#file-upload').click();
+  });
+
+  $('input[id=file-upload]').change(function() {
+    var path = $(this).val();
+    path = path.substring(path.lastIndexOf('\\')+1)
+    $('span.filename').html(path);
+    });
+
+  $('.start').on('click', function(e){
+    e.preventDefault();
     $(this).fadeOut(200);
-    $(".one").queue(false, true).animate({opacity: 1.0, left: +100}, 200).animate({opacity: 0.0, left: +100}, 100);
-    $(".two").queue(false, true).animate({opacity: 1.0, left: -100}, 200).animate({opacity: 0.0, left: -100}, 100);
-    $(".three").queue(false, true).animate({opacity: 1.0, left: +100}, 200).animate({opacity: 0.0, left: +100}, 100);
-    $('#input').focus();
-    start(counter);
+    $(".one").animate({opacity: 1.0, left: +100}, 600).animate({opacity: 0.0, left: +100}, 400).queue(function(){
+      $(".two").animate({opacity: 1.0, left: -100}, 600).animate({opacity: 0.0, left: -100}, 400).queue(function(){
+        $(".three").animate({opacity: 1.0, left: +100}, 600).animate({opacity: 0.0, left: +100}, 400).queue(function(){
+          $(".go").animate({opacity: 1.0, zoom: 2}, 400).animate({opacity: 0.0, zoom: 4}, 400).queue(function(){
+            $('#input').focus();
+            start(counter);
+          });
+        });
+      });
+    });
   });
 
   $( "#input" ).keypress(function( event ) {
     if ( event.which == 13 ) {
        event.preventDefault();
+       catchWord();
        $(this).val('');
        clearAndMove();
     }
@@ -45,6 +65,9 @@ function start(){
 }
 
 function moveWord(){
+  if(y + 200 > $('.upper-box').height()){
+    $('#input').addClass('shadow');
+  }
   if(y + 30 > $('.upper-box').height()){
     clearAndMove();
   }
@@ -52,14 +75,38 @@ function moveWord(){
   currentWord.css('top',y+'px');
 }
 
+function catchWord(){
+  var wrd = $('#input').val();
+  words = words.concat(wrd);
+}
+
 function clearAndMove(){
+  catchWord();
+  $('#input').val('');
+  $('#input').removeClass('shadow');
   currentWord.remove();
   clearTimeout(animation);
   moveNewWord();
 }
+function endGame(){
+  fin = [];
+  for(var i=0; i < max; i++){
+    wt = $('.image-holder #'+i);
+    wr = {};
+    wr.id = wt.attr('name');
+    wr.guess = words[i];
+    fin = fin.concat(wr);
+  }
+  console.log(fin);
+}
 function moveNewWord(){
   y = 0;
   counter = counter + 1;
+  max = $('.image-holder').children().length;
+  if(counter == max){
+    endGame();
+    return false;
+  }
   currentWord = $('.image-holder img#'+counter).remove();
   currentFactor = currentWord.width() * 0.3;
   $('.upper-box').append(currentWord);

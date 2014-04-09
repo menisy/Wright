@@ -3,6 +3,7 @@ Wright::Application.routes.draw do
     member do
       get 'generate_words'
       get 'play'
+      post 'new_page'
     end
   end
 

@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :play, :generate_words]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :play, :generate_words, :new_page]
 
   # GET /books
   # GET /books.json
@@ -13,18 +13,36 @@ class BooksController < ApplicationController
     if params[:reload]
       @reload = true
     end
+    @pages = @book.pages
   end
 
   def generate_words
     @book.destroy_words
-    Thread.new{
+    Thread.new do
       @book.generate_words
-    }
+      ActiveRecord::Base.connection.close
+    end
     redirect_to book_path(@book, reload: true), notice: "Words will be generated shortly\nPlease wait till the page reloads!"
   end
 
   def play
     
+  end
+
+  def new_page
+    @page = @book.pages.build page_params
+    respond_to do |format| 
+      if @page.save 
+        format.html { redirect_to @page, notice: 'Photo was successfully created.' }
+        format.json { 
+          data = {id: @page.id, thumb: view_context.image_tag(@page.attachment.url(:thumb))} 
+          render json: data, status: :created, location: @book
+      }
+      else 
+        format.html { render action: "new" }
+        format.json { render json: @page.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /books/new
@@ -85,5 +103,9 @@ class BooksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
       params.require(:book).permit(:name, :reference, :attachment, :lang)
+    end
+
+    def page_params
+      params.require(:page).permit(:attachment)
     end
 end

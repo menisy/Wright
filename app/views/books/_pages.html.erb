@@ -1,0 +1,12 @@
+<% @pages.each_with_index do |page, i| %>
+  <%= i+1 %> - <%= image_tag page.attachment %>
+  <div class="words">
+    <% page.words.each do |word| %>
+      <span class="word-container">
+        <%= image_tag word.image %>
+        <%= word.ocr_text %>
+      </span>
+    <% end %>
+  </div>
+  <br><br>
+<% end %>

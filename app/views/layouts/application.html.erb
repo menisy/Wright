@@ -7,8 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= bootstrap_flash %>
-<%= yield %>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <ul class="nav nav-pills">
+      <li>
+        <%= link_to t(:books), books_path %>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div id="main-container">
+  <%= bootstrap_flash %>
+  <%= yield %>
+</div>
 
 </body>
 </html>

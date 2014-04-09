@@ -1,15 +1,17 @@
-.start.btn.btn-primary
-  Start
 .game-container
   .upper-box
     
-
+  - css = @book.lang == 'ara' ? 'rtl' : ''
   .text-box
-    = text_field_tag nil, nil, id: 'input'
+    = text_field_tag nil, nil, id: 'input', class: css
+
+.center
+  .start.btn.btn-primary
+    Start
 
 .image-holder
   - @book.words.each_with_index do |word, i|
-    = image_tag word.image, id: "#{i}"
+    = image_tag word.image, id: "#{i}", name: "#{word.id}"
 
 .counter
   %h1.one
@@ -18,3 +20,5 @@
     2
   %h1.three
     3
+  %h1.go
+    =t(:go)

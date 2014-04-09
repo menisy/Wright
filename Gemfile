@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.4'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'    
+gem 'mongoid', github: 'mongoid/mongoid'
+gem 'bson_ext'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -29,12 +30,17 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'tesseract-ocr'
 
+gem 'jquery-fileupload-rails'
+
+gem 'amatch'
+
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 gem 'haml'
 gem "rmagick", "~> 2.13.1"
-gem 'paperclip'
+gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+gem 'aws-s3',            require: 'aws/s3'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

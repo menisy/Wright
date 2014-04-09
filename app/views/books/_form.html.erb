@@ -17,8 +17,14 @@
       <%= f.text_field :lang, :class => 'text_field' %>
     </div>
   </div>
-
-  <%= f.file_field :attachment %>
+    <div class="control-group">
+    <%= f.label :image, :class => 'control-label' %>
+    <div class="controls">
+      <%= link_to 'Upload cover', '#', class: 'btn btn-primary', id: 'click-upload' %>
+      <span class="filename"></span>
+      <%= f.file_field :attachment, class: 'hidden', id: 'file-upload' %>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
