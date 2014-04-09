@@ -37,7 +37,6 @@ app/assets/images/uploads/**/*
 config/*.sphinx.conf
 config/database.yml
 config/mebla.yml
-config/mongoid.yml
 config/paperclip.yml
 config/private_pub.yml
 config/tire.yml
