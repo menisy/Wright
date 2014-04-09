@@ -38,7 +38,7 @@ class Book
   end
 
   def generatable?
-    pages.ungenerated.count > 0 && !generating
+    pages.ungenerated.count > 0 && !self.generating
   end
 
 
