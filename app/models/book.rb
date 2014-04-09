@@ -37,6 +37,10 @@ class Book
     a
   end
 
+  def generatable?
+    pages.ungenerated.count > 0
+  end
+
 
   def generate_words
 
@@ -52,7 +56,7 @@ class Book
 
     logger.error "Starting Generating ----------------------"
 
-    pages.each do |page|
+    pages.ungenerated.each do |page|
 
       image_path = page.attachment.path
 

@@ -17,7 +17,6 @@ class BooksController < ApplicationController
   end
 
   def generate_words
-    @book.destroy_words
     Thread.new do
       @book.generate_words
       ActiveRecord::Base.connection.close

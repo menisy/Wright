@@ -21,7 +21,7 @@
   </div>
 </div>
 
-<% if (!@book.generating && !@book.generated) %>
+<% if @book.generatable? %>
   <%= link_to 'Generate words', generate_words_book_path(@book), class: 'btn btn-success' %>
 <% end %>
 

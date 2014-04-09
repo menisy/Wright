@@ -212,3 +212,10 @@
 .browse{
   display: inline-block;
 }
+.alert{
+  position: fixed;
+  width: 53%;
+  top: 30px;
+  box-shadow: 1px 1px 7px;
+  z-index: 2000;
+}

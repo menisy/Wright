@@ -35,8 +35,8 @@ $(document).ready ->
       data.context.removeClass "working" if progress is 100 
     fail: (e, data) -> 
       data.context.addClass "error"
-      addFlash('danger',data.msg)
-      console.log(e, data)
+      addFlash('danger', 'Already loaded a page with the same name!')
+      $('li.error').remove()
     done: (e, data) ->
       file = data.result
       name = file.filename
