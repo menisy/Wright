@@ -17,7 +17,11 @@ class BooksController < ApplicationController
   end
 
   def generate_words
+    @book.generating = true
+    @book.save
+    logger.error 'in generation *********************'
     Thread.new do
+      logger.error 'in thread %%%%%%%%%%%%%%%%%%%%'
       @book.generate_words
       ActiveRecord::Base.connection.close
     end

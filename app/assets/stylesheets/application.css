@@ -215,6 +215,6 @@
 .alert{
   position: fixed;
   width: 53%;
-  top: 35px;
+  top: 10px;
   box-shadow: 1px 1px 7px;
 }

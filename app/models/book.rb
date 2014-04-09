@@ -38,7 +38,7 @@ class Book
   end
 
   def generatable?
-    pages.ungenerated.count > 0
+    pages.ungenerated.count > 0 && !generating
   end
 
 
@@ -52,7 +52,7 @@ class Book
       e.blacklist = '|'
     }
 
-      logger.error "Initiated tesseract ----------------------"
+    logger.error "Initiated tesseract ----------------------"
 
     logger.error "Starting Generating ----------------------"
 

@@ -17,6 +17,9 @@
 //= require_tree .
 
 
+$(window).load(function(){
+  dropFlash();
+});
 $(document).ready( function(){
   counter = -1;
   words = [];
@@ -119,5 +122,8 @@ function moveNewWord(){
   function addFlash(cls, msg){
     var flash = '<div class="alert fade in alert-'+cls+'"><button class="close" data-dismiss="alert">×</button>'+msg+'</div>'
     $('#main-container').prepend(flash);
-    
+    dropFlash();
+  }
+  function dropFlash(){
+    $('.alert').animate({top: 35}, 800);
   }
