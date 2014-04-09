@@ -6,7 +6,9 @@ class Page
   field :number, type: Integer
   field :whole_text
   field :generated, type: Boolean
-  embeds_many :words
+  field :filename
+
+  has_many :words
   embedded_in :book
 
 

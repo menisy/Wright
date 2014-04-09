@@ -8,8 +8,10 @@ $(document).ready ->
     dataType: 'json', 
     # this element will accept file drag/drop uploading 
     dropZone: $('#dropzone'), 
-    add: (e, data) -> 
-      tpl = $('<li class="working list-group-item"><span class="pull-left thumb" id="im'+fileCount+'"></span><input type="text" value="0" data-width="48" data-height="48"'+ ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>') 
+    add: (e, data) ->
+      name = data.files[0].name
+      name = name.substring(0, name.lastIndexOf('.'))
+      tpl = $('<li class="working list-group-item"><span class="pull-left thumb" id="'+name+'"></span><input type="text" value="0" data-width="48" data-height="48"'+ ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>') 
       fileCount++
       # Append the file name and file size 
       tpl.find("p").text(data.files[0].name).append "<i>" + formatFileSize(data.files[0].size) + "</i>" 
@@ -32,10 +34,14 @@ $(document).ready ->
       data.context.find("input").val(progress).change() 
       data.context.removeClass "working" if progress is 100 
     fail: (e, data) -> 
-      data.context.addClass "error" 
+      data.context.addClass "error"
+      addFlash('danger',data.msg)
+      console.log(e, data)
     done: (e, data) ->
       file = data.result
-      $('#im'+fileCount).prepend(file.thumb)
+      name = file.filename
+      name = name.substring(0, name.lastIndexOf('.'))
+      $('#'+name).prepend(file.thumb)
   }) 
 
   formatFileSize = (bytes) -> 

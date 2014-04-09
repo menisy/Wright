@@ -15,7 +15,7 @@ class Word
 
 
   has_mongoid_attached_file :image
-  embedded_in :page
+  belongs_to :page
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def add_guess word

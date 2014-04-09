@@ -90,4 +90,9 @@ class Book
     self.generated = true
     save
   end
+
+  def can_add? page
+    similar_pages = self.pages.find_by filename: page
+    similar_pages.nil?
+  end
 end

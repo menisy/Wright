@@ -115,3 +115,9 @@ function moveNewWord(){
   currentWord.css('top','-20px');
   animation = setInterval(function(){moveWord()}, 100);
 }
+
+  function addFlash(cls, msg){
+    var flash = '<div class="alert fade in alert-'+cls+'"><button class="close" data-dismiss="alert">×</button>'+msg+'</div>'
+    $('#main-container').prepend(flash);
+    
+  }

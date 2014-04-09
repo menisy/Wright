@@ -30,12 +30,18 @@ class BooksController < ApplicationController
   end
 
   def new_page
+    filename = page_params[:attachment].original_filename
+    unless @book.can_add? filename
+      render json: {message: 'Already loaded a page with the same name!'}, status: :unprocessable_entity
+      return
+    end
     @page = @book.pages.build page_params
+    @page.filename = filename
     respond_to do |format| 
-      if @page.save 
+      if @page.save
         format.html { redirect_to @page, notice: 'Photo was successfully created.' }
         format.json { 
-          data = {id: @page.id, thumb: view_context.image_tag(@page.attachment.url(:thumb))} 
+          data = {id: @page.id, filename: @page.filename, thumb: view_context.image_tag(@page.attachment.url(:thumb))} 
           render json: data, status: :created, location: @book
       }
       else 
