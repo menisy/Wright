@@ -205,6 +205,10 @@
   margin-right: 10px;
   overflow: hidden;
 }
+.thumb img{
+  height: 100%;
+  width: 100%;
+}
 .browse{
   display: inline-block;
 }
