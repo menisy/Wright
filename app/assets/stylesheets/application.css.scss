@@ -234,6 +234,12 @@ body{
   top: 10px;
   box-shadow: 1px 1px 7px;
 }
+.page-image{
+  overflow: hidden;
+}
+.page-image img{
+  max-width: 100%;
+}
 
 
 /*
