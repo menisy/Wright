@@ -20,11 +20,12 @@ class BooksController < ApplicationController
     @book.generating = true
     @book.save
     logger.error 'in generation *********************'
-    Thread.new do
-      logger.error 'in thread %%%%%%%%%%%%%%%%%%%%'
-      @book.generate_words
-      ActiveRecord::Base.connection.close
-    end
+    # Thread.new do
+    #   logger.error 'in thread %%%%%%%%%%%%%%%%%%%%'
+    #   @book.generate_words
+    #   ActiveRecord::Base.connection.close
+    # end
+    GenWorker.perform_async(@book.id.to_s)
     redirect_to book_path(@book, reload: true), notice: "Words will be generated shortly\nPlease wait till the page reloads!"
   end
 

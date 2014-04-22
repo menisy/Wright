@@ -16,7 +16,7 @@
 <div id="upload">
   <div id="dropzone">
     <div class="browse btn btn-primary"> Upload pages </div>
-    <input id="fileupload" data-url= '<%="/books/#{@book.id}/new_page"%>' multiple = "" name = "page[attachment]" type = "file" hidden="true"/>
+    <input id="fileupload" class="hide" data-url= '<%="/books/#{@book.id}/new_page"%>' multiple = "" name = "page[attachment]" type = "file" hidden="true"/>
     <ul class="upload-list list-group"></ul>
   </div>
 </div>

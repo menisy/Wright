@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require bootstrap
 //= require jquery-fileupload/basic
 //= require_tree .
 
@@ -53,8 +53,6 @@ $(document).ready( function(){
   $( "#input" ).keypress(function( event ) {
     if ( event.which == 13 ) {
        event.preventDefault();
-       catchWord();
-       $(this).val('');
        clearAndMove();
     }
   });
@@ -64,6 +62,8 @@ $(document).ready( function(){
 
 function start(){
   y = 0;
+  gameOver = false;
+  max = $('.image-holder').children().length;
   moveNewWord();
 }
 
@@ -72,6 +72,7 @@ function moveWord(){
     $('#input').addClass('shadow');
   }
   if(y + 30 > $('.upper-box').height()){
+    //catchWord();
     clearAndMove();
   }
   y = y + 8 - currentFactor;
@@ -81,22 +82,32 @@ function moveWord(){
 function catchWord(){
   var wrd = $('#input').val();
   words = words.concat(wrd);
+  console.log(wrd)
+  console.log(words)
 }
 
 function clearAndMove(){
+  if(gameOver)
+    return false;
   catchWord();
   $('#input').val('');
   $('#input').removeClass('shadow');
-  currentWord.remove();
+  if(currentWord.length){
+    cw = currentWord.remove();
+    $('.image-holder').append(cw);
+  }
   clearTimeout(animation);
   moveNewWord();
 }
 function endGame(){
+  gameOver = true;
+  $('#input').removeClass('shadow');
   fin = [];
   for(var i=0; i < max; i++){
-    wt = $('.image-holder #'+i);
+    wt = $('img#'+i);
     wr = {};
-    wr.id = wt.attr('name');
+    console.log(wt);
+    wr.id = $(wt).attr('name');
     wr.guess = words[i];
     fin = fin.concat(wr);
   }
@@ -105,7 +116,8 @@ function endGame(){
 function moveNewWord(){
   y = 0;
   counter = counter + 1;
-  max = $('.image-holder').children().length;
+  console.log('max', max)
+  console.log('counter', counter)
   if(counter == max){
     endGame();
     return false;
