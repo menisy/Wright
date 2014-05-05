@@ -1,16 +1,21 @@
+.left-box.pull-left
+  .progress-container
+    .progress
+
 .game-container
   .upper-box
     
-  - css = @book.lang == 'ara' ? 'rtl' : ''
+  - css = @lang == 'ara' ? 'rtl' : ''
   .text-box
     = text_field_tag nil, nil, id: 'input', class: css
 
 .center
   .start.btn.btn-primary
     Start
+  =link_to "Restart", play_random_books_path, class: 'restart btn btn-primary hide'
 
 .image-holder
-  - @book.words.each_with_index do |word, i|
+  - @words.each_with_index do |word, i|
     = image_tag word.image, id: "#{i}", name: "#{word.id}"
 
 .counter
@@ -22,3 +27,27 @@
     3
   %h1.go
     =t(:go)
+
+.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+        .centered
+          %h3.modal-title Challenge Completed!
+      .modal-body
+        .centered
+          %p Calculating score please wait...
+          =link_to "Play again!", play_random_books_path, class: 'btn btn-success'
+      .modal-footer
+        .centered
+          .share
+            %p Share it with your friends
+            %div{class:"fb-feed", data: {width: "450"}}
+              =image_tag 'facebook.png'
+            %div{class:"twitter", data: {width: "450"}}
+              =image_tag 'twitter.png'
+            %div{class:"gplus", data: {width: "450"}}
+              =image_tag 'google-plus.png'
+          
+

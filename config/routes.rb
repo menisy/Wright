@@ -5,6 +5,11 @@ Wright::Application.routes.draw do
       get 'play'
       post 'new_page'
     end
+
+    collection do
+      post 'submit_score'
+      get 'play_random'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

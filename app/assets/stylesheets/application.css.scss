@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require social-share-button
  *= require_tree .
  */
 
@@ -19,7 +20,7 @@ $navbar-default-color: #F63700;
 $navbar-default-link-color: #F63700;
 $navbar-default-link-active-color: #FB6900;
 $navbar-default-link-hover-color: #eee;
-$btn-success-bg: #7EFF6B;
+$btn-success-bg: #00DA3C;
 $navbar-margin-bottom: 0px;
 $body-bg: #00B9BD;
 
@@ -32,8 +33,20 @@ body{
   margin: 0 auto;
 }
 
+.centered{
+  width: 100%;
+  text-align: center;
+}
+.share{
+  div{
+    display: inline-block;
+  }
+  img{
+    width: 40px;
+  }
+}
 .game-container{
-  margin: auto;
+  margin: auto 80px;
   width: 80%;
   height: 430px;
   overflow: hidden;
@@ -187,7 +200,7 @@ body{
   width: 30%;
   margin: 10px auto;
 }
-.start{
+.start, .restart{
   width: 90%;
   margin: 0px auto;
 }
@@ -239,6 +252,28 @@ body{
 }
 .page-image img{
   max-width: 100%;
+}
+.left-box{
+  height: 400px;
+  margin: auto;
+  margin-left: 30px;
+  margin-top: 15px;
+}
+
+.progress-container{
+  height: 100%;
+  width: 12px;
+  padding: 1px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.progress{
+  width: 10px;
+  height: 0%;
+  border-radius: 5px;
+  background-color: #BEF202;
+  position: relative;
+  bottom: 0px;
 }
 
 

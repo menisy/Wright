@@ -9,14 +9,31 @@ class Word
   field :text
   field :accuracy, type: Integer
   field :ocr_text
-  field :guesses, type: Array
+  field :guesses, type: Array, default: []
   field :validated, type: Boolean
   field :filename
+  field :played, type: Integer, default: 0
+  field :lang
 
 
   has_mongoid_attached_file :image
+  before_create :set_lang
   belongs_to :page
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
+
+  def self.lang lang
+    where(lang: lang)
+  end
+
+  def set_lang
+    self.lang = self.page.book.lang
+  end
+
+  def inc_played
+    self.played += 1
+    save
+  end
 
   def add_guess word
     m = Levenshtein.new(word)

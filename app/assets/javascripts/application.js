@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery-fileupload/basic
+//= require social-share-button
 //= require_tree .
 
 
@@ -21,6 +22,16 @@ $(window).load(function(){
   dropFlash();
 });
 $(document).ready( function(){
+
+  $('.fb-feed').click(function(){
+    FB.ui({
+    method: 'feed',
+    link: 'http://146.185.151.250:1111/books/play_random',
+    caption: 'Can you beat my score?',
+    description: 'Can you take the challenge and beat your friends?!',
+    picture: 'http://thiyaku.files.wordpress.com/2011/06/creative_logo_04.jpg'
+  }, function(response){});
+  });
   counter = -1;
   words = [];
 
@@ -37,13 +48,17 @@ $(document).ready( function(){
 
   $('.start').on('click', function(e){
     e.preventDefault();
-    $(this).fadeOut(200);
+    
+    $(this).fadeOut(200, function(){
+      $('.restart').removeClass('hide');      
+    });
+
     $(".one").animate({opacity: 1.0, left: +100}, 600).animate({opacity: 0.0, left: +100}, 400).queue(function(){
       $(".two").animate({opacity: 1.0, left: -100}, 600).animate({opacity: 0.0, left: -100}, 400).queue(function(){
         $(".three").animate({opacity: 1.0, left: +100}, 600).animate({opacity: 0.0, left: +100}, 400).queue(function(){
           $(".go").animate({opacity: 1.0, zoom: 2}, 400).animate({opacity: 0.0, zoom: 4}, 400).queue(function(){
             $('#input').focus();
-            start(counter);
+            start();
           });
         });
       });
@@ -61,6 +76,7 @@ $(document).ready( function(){
 
 
 function start(){
+  startTime = new Date().getTime() / 1000;
   y = 0;
   gameOver = false;
   max = $('.image-holder').children().length;
@@ -99,29 +115,44 @@ function clearAndMove(){
   clearTimeout(animation);
   moveNewWord();
 }
+function sendData(arr, time){
+  $.post( "/books/submit_score", {data: arr, time: time}, function( data ) {
+    $( ".modal-body p" ).html( data.total );
+  });
+}
 function endGame(){
   gameOver = true;
+  endTime = new Date().getTime() / 1000;
+  time = endTime - startTime
   $('#input').removeClass('shadow');
+  $('.modal').modal('show');
   fin = [];
   for(var i=0; i < max; i++){
     wt = $('img#'+i);
     wr = {};
-    console.log(wt);
     wr.id = $(wt).attr('name');
     wr.guess = words[i];
     fin = fin.concat(wr);
   }
   console.log(fin);
+  sendData(fin, time);
+}
+function animateBar(){
+  var prog = (counter / max) * 100;
+  var diff = 100 - prog;
+  $('.progress').animate({bottom: -diff+'%', height: prog+'%'}, 'fast');
 }
 function moveNewWord(){
   y = 0;
   counter = counter + 1;
-  console.log('max', max)
-  console.log('counter', counter)
+
+  //animate progress bar
+  animateBar();
   if(counter == max){
     endGame();
     return false;
   }
+
   currentWord = $('.image-holder img#'+counter).remove();
   currentFactor = currentWord.width() * 0.3;
   $('.upper-box').append(currentWord);

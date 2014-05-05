@@ -30,9 +30,9 @@ class Book
   end
 
   def words
-    a = []
+    a = pages.first.words
     pages.each do |p|
-      a = a + p.words
+      a = a.merge p.words
     end
     a
   end

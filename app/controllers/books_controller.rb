@@ -30,7 +30,16 @@ class BooksController < ApplicationController
   end
 
   def play
-    
+    @lang = @book.lang
+    @words = @book.words.asc(:played).take(20)
+    @words.map(&:inc_played)
+  end
+
+  def play_random
+    @lang = 'ara'
+    @words = Word.asc(:played).take(20)
+    @words.map(&:inc_played)
+    render 'play'
   end
 
   def new_page
@@ -78,6 +87,22 @@ class BooksController < ApplicationController
         format.json { render json: @book.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def submit_score
+    logger.error "scoreeeeeeeeeeeeeeeeeeeeeeeeeee"
+    total = 0
+    params[:data].to_a.each do |e|
+      id = e[1][:id]
+      guess = e[1][:guess]
+      word = Word.find(id)
+      score = word.add_guess guess
+      total += score
+    end
+    time = params[:time].to_i
+    total *= 100
+    total /= time
+    render json: {total: "Your score is #{total}! Your time is #{time}s"}
   end
 
   # PATCH/PUT /books/1
