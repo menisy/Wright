@@ -31,7 +31,7 @@
 .bundler_stubs
 .directory
 *.swp
-*.png
+public/*.png
 app/assets/images/tmp/**/*
 app/assets/images/uploads/**/*
 config/*.sphinx.conf
