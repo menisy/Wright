@@ -4,6 +4,8 @@ class User
   include Mongoid::Paperclip
 
   has_mongoid_attached_file :image
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
