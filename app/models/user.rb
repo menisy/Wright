@@ -43,7 +43,7 @@ class User
   def self.from_omniauth(auth, current_user)
     authorization = Authorization.where(:provider => auth.provider, :uid => auth.uid.to_s, :token => auth.credentials.token, :secret => auth.credentials.secret).first_or_initialize
     if authorization.user.blank?
-      user = current_user.nil? ? User.where('email = ?', auth["info"]["email"]).first : current_user
+      user = current_user.nil? ? User.find_by(email: auth["info"]["email"]) : current_user
       if user.blank?
        user = User.new
        user.password = Devise.friendly_token[0,10]
