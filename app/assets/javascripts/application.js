@@ -172,5 +172,5 @@ function moveNewWord(){
     dropFlash();
   }
   function dropFlash(){
-    $('.alert').animate({top: 35}, 800);
+    $('.alert').animate({top: 40}, 800);
   }
