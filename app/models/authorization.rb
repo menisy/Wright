@@ -8,6 +8,7 @@ class Authorization
   field :uid
   field :token
   field :secret
+  field :username
 
 	after_create :fetch_details
 
