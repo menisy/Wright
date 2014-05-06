@@ -37,12 +37,13 @@ body{
   width: 100%;
   text-align: center;
 }
-.share{
+.share, .login{
   div{
     display: inline-block;
   }
   img{
     width: 40px;
+    cursor: pointer;
   }
 }
 .game-container{
@@ -262,20 +263,33 @@ body{
 
 .progress-container{
   height: 100%;
-  width: 12px;
-  padding: 1px;
-  border-radius: 5px;
+  width: 16px;
+  padding: 2px;
+  border-radius: 8px;
   background-color: #fff;
 }
 .progress{
-  width: 10px;
+  width: 12px;
   height: 0%;
-  border-radius: 5px;
+  border-radius: 6px;
   background-color: #BEF202;
   position: relative;
   bottom: 0px;
 }
 
+canvas{
+  width: 1000px;
+  height: 600px;
+  z-index: 1501;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+}
+.modal-dialog{
+  position: relative;
+  z-index: 2000;
+}
 
 /*
 body{

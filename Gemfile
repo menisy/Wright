@@ -63,6 +63,19 @@ end
 # Use unicorn as the app server
  gem 'unicorn', group: :production
 
+  gem 'devise'
+  gem 'twitter'
+  gem 'json'
+  gem 'airbrake'
+  gem 'koala'
+  gem 'linkedin'
+  gem 'omniauth'
+  gem 'omniauth-facebook', '1.4.0'
+  gem 'omniauth-github'
+  gem 'omniauth-google-oauth2'
+  gem 'omniauth-linkedin'
+  gem 'omniauth-twitter'
+
 # Use Capistrano for deployment
  #gem 'capistrano', group: :development
 

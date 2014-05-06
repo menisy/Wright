@@ -27,6 +27,37 @@
     3
   %h1.go
     =t(:go)
+.welcome.fade.modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+        .centered
+          %h3.modal-title Welcome to Writght
+      .modal-body
+        .centered
+          %p
+            Type the words as they fall as
+            %strong
+              accurately
+            and as
+            %strong
+              quickly
+            as possible!
+          =link_to "Play!", play_random_books_path, class: 'btn btn-success'
+      .modal-footer
+        .centered
+          .login
+            -imgs = %w(facebook.png twitter.png google-plus.png)
+            %p
+              To keep your scores and ranks please sign in using one of
+              the following services
+              -User.omniauth_providers.each_with_index do |provider, i|
+                %div
+                  =link_to omniauth_authorize_path('user', provider) do
+                    =image_tag imgs[i]
+
+
 
 .modal.fade
   .modal-dialog
@@ -50,4 +81,9 @@
             %div{class:"gplus", data: {width: "450"}}
               =image_tag 'google-plus.png'
           
+= javascript_include_tag "fireworks"
+
+-unless current_user
+  :javascript
+      $('.welcome').modal('show');
 

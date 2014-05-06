@@ -13,9 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery.knob
+//= require photo
 //= require jquery-fileupload/basic
 //= require social-share-button
-//= require_tree .
+//= require yamli
+
 
 
 $(window).load(function(){
@@ -126,6 +129,7 @@ function endGame(){
   time = endTime - startTime
   $('#input').removeClass('shadow');
   $('.modal').modal('show');
+
   fin = [];
   for(var i=0; i < max; i++){
     wt = $('img#'+i);
