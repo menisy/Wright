@@ -4,6 +4,11 @@ class Authorization
 	
 	belongs_to :user
 
+  field :provider
+  field :uid
+  field :token
+  field :secret
+
 	after_create :fetch_details
 
 
