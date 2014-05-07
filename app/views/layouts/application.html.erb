@@ -36,13 +36,22 @@
       <div class="container">
         <ul class="nav nav-pills first-nav">
           <li>
-            <%= link_to t(:books), books_path %>
+            <%= link_to 'Play now!', play_random_books_path, class: 'btn btn-success'  %>
           </li>
         </ul>
         <ul class="nav nav-pills second-nav">
           <% if user_signed_in? %>
             <li>
-              <%= link_to current_user.name, books_path %>
+              <%= link_to current_user.name, '#' %>
+            </li>
+            <li class="first expanded">
+                <%= link_to '#' do %>
+                  <%= current_user.name %>
+                  <span class="dropdown"></span>
+                <% end %>
+              <ul class="submenu" style="display: none;">
+                <li><%= link_to "Logout", destroy_user_session_path %></li>
+              </ul>
             </li>
             <li>
               <%= image_tag current_user.image %>
