@@ -53,7 +53,6 @@ class User
        user.password = Devise.friendly_token[0,10]
        user.name = auth.info.name
        user.email = auth.info.email
-       user.image = open auth.info.image
        avatar_url = process_uri(auth.info.image)
        logger.error '---------------------------'
        logger.error avatar_url
