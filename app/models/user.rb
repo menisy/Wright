@@ -55,6 +55,8 @@ class User
        user.email = auth.info.email
        user.image = open auth.info.image
        avatar_url = process_uri(auth.info.image)
+       logger.error '---------------------------'
+       logger.error avatar_url
        user.image = URI.parse(avatar_url)
        auth.provider == "twitter" ?  user.save(:validate => false) :  user.save
      end
