@@ -128,7 +128,7 @@ function endGame(){
   endTime = new Date().getTime() / 1000;
   time = endTime - startTime
   $('#input').removeClass('shadow');
-  $('.modal').modal('show');
+  $('.endGame').modal('show');
 
   fin = [];
   for(var i=0; i < max; i++){
