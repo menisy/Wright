@@ -79,7 +79,7 @@ class User
 
   private
 
-    def process_uri(uri)
+    def self.process_uri(uri)
       require 'open-uri'
       require 'open_uri_redirections'
       open(uri, :allow_redirections => :safe) do |r|
