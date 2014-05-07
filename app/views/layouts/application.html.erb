@@ -39,6 +39,19 @@
             <%= link_to t(:books), books_path %>
           </li>
         </ul>
+        <ul class="nav nav-pills pull-right">
+          <% if user_signed_in? %>
+            <li>
+              <%= image_tag current_user.image %>
+            </li>
+            <li>
+              <%= link_to current_user.name, books_path %>
+            </li>
+          <% end %>
+          <li>
+            
+          </li>
+        </ul>
       </div>
     </nav>
     <div id="main-container">
