@@ -63,6 +63,8 @@ end
 # Use unicorn as the app server
  gem 'unicorn', group: :production
 
+ gem 'open_uri_redirections'
+
   gem 'devise'
   gem 'twitter'
   gem 'json'

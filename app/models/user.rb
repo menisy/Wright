@@ -53,7 +53,9 @@ class User
        user.password = Devise.friendly_token[0,10]
        user.name = auth.info.name
        user.email = auth.info.email
-       user.image = auth.info.image
+       user.image = open auth.info.image
+       avatar_url = process_uri(auth.info.image)
+       user.image = URI.parse(avatar_url)
        auth.provider == "twitter" ?  user.save(:validate => false) :  user.save
      end
      authorization.username = auth.info.nickname
@@ -73,4 +75,14 @@ class User
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
+
+  private
+
+    def process_uri(uri)
+      require 'open-uri'
+      require 'open_uri_redirections'
+      open(uri, :allow_redirections => :safe) do |r|
+        r.base_uri.to_s
+      end
+    end
 end
