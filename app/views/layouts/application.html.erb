@@ -34,18 +34,18 @@
   <body>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
-        <ul class="nav nav-pills">
+        <ul class="nav nav-pills first-nav">
           <li>
             <%= link_to t(:books), books_path %>
           </li>
         </ul>
-        <ul class="nav nav-pills pull-right">
+        <ul class="nav nav-pills second-nav">
           <% if user_signed_in? %>
             <li>
-              <%= image_tag current_user.image %>
+              <%= link_to current_user.name, books_path %>
             </li>
             <li>
-              <%= link_to current_user.name, books_path %>
+              <%= image_tag current_user.image %>
             </li>
           <% end %>
           <li>
