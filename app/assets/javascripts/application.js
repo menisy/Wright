@@ -50,11 +50,11 @@ $(document).ready( function(){
     method: 'feed',
     link: 'http://146.185.151.250:1111/',
     caption: $('.gameinfo .igot').html() + 
-    $('.gameinfo .score').html() + $('.gameinfo .in').html() + $('.gameinfo .time').html() + 
+    $('.gameinfo .score').html() + $('.gameinfo .time').html() + 
     $('.gameinfo .caption').html()
     ,
     description: $('.gameinfo .description').html(),
-    picture: 'http://thiyaku.files.wordpress.com/2011/06/creative_logo_04.jpg'
+    picture: 'http://st.depositphotos.com/1077310/1448/v/950/depositphotos_14483813-Arabic-Letters-Seamless-Pattern.jpg'
   }, function(response){});
   });
   counter = -1;
