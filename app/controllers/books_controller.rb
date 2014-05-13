@@ -101,7 +101,7 @@ class BooksController < ApplicationController
     time = params[:time].to_i
     total *= 100
     total -= (time*10)
-    render json: {total: I18n.t(:score_is, total: total, time: time)}
+    render json: {total: I18n.t(:score_is, total: total, time: time), score: total, time: time}
   end
 
   # PATCH/PUT /books/1
