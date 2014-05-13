@@ -49,7 +49,7 @@ $(document).ready( function(){
     FB.ui({
     method: 'feed',
     link: 'http://146.185.151.250:1111/',
-    caption: $('.gameinfo .igot').html() + 
+    caption: $('.gameinfo .myscore').html() + 
     $('.gameinfo .score').html() + $('.gameinfo .time').html() + 
     $('.gameinfo .caption').html()
     ,
