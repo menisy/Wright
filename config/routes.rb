@@ -1,12 +1,16 @@
 Wright::Application.routes.draw do
   devise_for :admins
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
-  resources :books, path: '' do
+  resources :books do
     member do
       get 'generate_words'
       get 'play'
       post 'new_page'
     end
+  end
+
+
+  resources :games, path: '' do
 
     collection do
       post 'submit_score'
@@ -21,7 +25,7 @@ Wright::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
-  root 'books#play_random'
+  root 'games#play_random'
 
   resources :users, only: [] do
     collection do
