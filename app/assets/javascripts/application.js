@@ -143,7 +143,7 @@ function clearAndMove(){
 }
 function sendData(arr, time){
   $.post( "/books/submit_score", {data: arr, time: time}, function( data ) {
-    $( ".modal-body p" ).html( data.total );
+    $( ".endGame .modal-body p" ).html( data.total );
     $('.gameinfo .score').html(data.score);
     $('.gameinfo .time').html(data.time);
   });
