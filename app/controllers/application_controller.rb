@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :set_local
 
   def set_local
-    local = :en
+    local = :ar
     if user_signed_in?
       local = current_user.default_local.to_sym
     else

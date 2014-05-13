@@ -142,7 +142,8 @@ function clearAndMove(){
   moveNewWord();
 }
 function sendData(arr, time){
-  $.post( "/books/submit_score", {data: arr, time: time}, function( data ) {
+  var gameID = $('.gameinfo .game-id').attr('id');
+  $.post( "/submit_score", {data: arr, time: time, game: gameID }, function( data ) {
     $( ".endGame .modal-body p" ).html( data.total );
     $('.gameinfo .score').html(data.score);
     $('.gameinfo .time').html(data.time);

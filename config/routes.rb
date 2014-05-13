@@ -1,6 +1,7 @@
 Wright::Application.routes.draw do
+  devise_for :admins
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
-  resources :books do
+  resources :books, path: '' do
     member do
       get 'generate_words'
       get 'play'
@@ -10,6 +11,7 @@ Wright::Application.routes.draw do
     collection do
       post 'submit_score'
       get 'play_random'
+      get 'rankings'
     end
   end
 

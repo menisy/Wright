@@ -66,4 +66,43 @@ body{
 }
 nav .container{
   width: 70%;
+  padding-top: 7px;
+}
+.logo{
+  width: 80px;
+  position: absolute;
+  top: 5px;
+}
+.logo-inv{
+  display: inline-block;
+  width: 70px;
+  background-image: url(<%= asset_path 'logo-inv.png' %>);
+  height: 50px;
+  position: absolute;
+  top: 1px;
+  background-size: 70px;
+}
+.navbar{
+  height: 65px;
+}
+.navbar .btn{
+  background-color: #00B9BD;
+  color: white;
+}
+.navbar .btn:hover{
+  color: black;
+}
+.user-prev{
+  padding: 10px;
+  border: 1px solid #002b32;
+  border-radius: 5px;
+}
+.user-prev div{
+  display: inline-block;
+}
+.user-prev .pic{
+  border: 1px solid #eee;
+}
+.user-prev .score{
+  padding: 10px;
 }

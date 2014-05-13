@@ -20,7 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  welcome: "Welcome to Wright!"
+  welcome: "Welcome to "
   books: "Books"
   go: "Go!"
   language_set: 'Language changed successfully'
@@ -46,3 +46,5 @@ en:
   myscore: 'My score is '
   seconds: 'seconds'
   tweet: 'Can you beat my score?! Enter the words quickly and accurately as they fall!'
+  rankings: 'Rankings'
+  all_time: 'All Time'

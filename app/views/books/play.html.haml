@@ -47,6 +47,7 @@
         .centered.seventy
           %h3.modal-title
             =t(:welcome)
+            %span.logo-inv
       .modal-body
         .centered
           = image_tag 'inst.png', class: 'inst'
@@ -103,6 +104,7 @@
     =t(:seconds)
   .score
   .time
+  %div{ class: 'game-id', id: "#{@game.id}"}
 
 -unless current_user || session[:first]
   -session[:first] = true

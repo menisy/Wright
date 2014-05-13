@@ -16,6 +16,7 @@ class Word
   field :lang
 
 
+  has_and_belongs_to_many :games
   has_mongoid_attached_file :image
   before_create :set_lang
   belongs_to :page

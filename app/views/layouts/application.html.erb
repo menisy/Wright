@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Wright</title>
+    <title>كلمة</title>
     <script>
       window.fbAsyncInit = function() {
         FB.init({
@@ -21,7 +21,7 @@
     </script>
     <script type="text/javascript" src="http://api.yamli.com/js/yamli_api.js"></script>
  
-    <% if I18n.locale == :en %>
+    <% if I18n.locale.to_s == 'en' %>
       <%= stylesheet_link_tag    "application", media: "all" %>
     <% else %>
           <%= stylesheet_link_tag    "arabic", media: "all" %>
@@ -38,7 +38,6 @@
   <body>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
-        
         <ul class="nav nav-pills second-nav pull-right">
           <% if user_signed_in? %>
             <li class="first expanded">
@@ -63,12 +62,15 @@
         </ul>
         <ul class="nav nav-pills mid pull-right">
           <li>
-            <h2>Wright</h2>
+            <h2><%= image_tag 'kelma.png', class: 'logo' %></h2>
           </li>
         </ul>
         <ul class="nav nav-pills first-nav pull-left">
           <li>
-            <%= link_to t(:play_now), play_random_books_path, class: 'btn btn-success'  %>
+            <%= link_to t(:play_now), play_random_books_path, class: 'btn'  %>
+          </li>
+          <li>
+            <%= link_to t(:rankings), rankings_books_path, class: 'btn'  %>
           </li>
           <%= render partial: 'shared/change_local' %>
         </ul>

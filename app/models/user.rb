@@ -30,6 +30,7 @@ class User
   field :last_sign_in_at,    type: Time
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
+  field :score,              type: Integer, default: 0
 
 
 
@@ -42,6 +43,8 @@ class User
   field :default_speed, type: Integer, default: 3
 
   has_many :authorizations
+
+  has_many :games
 
   def self.new_with_session(params,session)
     if session["devise.user_attributes"]
@@ -67,7 +70,8 @@ class User
        logger.error '---------------------------'
        logger.error avatar_url
        user.image = URI.parse(avatar_url)
-       auth.provider == "twitter" ?  user.save(:validate => false) :  user.save
+       auth.provider == "twitter" ?  user.email = "random#{User.count}@email.com" : nil
+       user.save
      end
      authorization.username = auth.info.nickname
      authorization.user_id = user.id
