@@ -51,7 +51,7 @@ $(document).ready( function(){
     link: 'http://146.185.151.250:1111/',
     caption: $('.gameinfo .igot').html() + 
     $('.gameinfo .score') + $('.gameinfo .in').html() + $('.gameinfo .time') + 
-    $('.gameinfo .caption').html() +
+    $('.gameinfo .caption').html()
     ,
     description: $('.gameinfo .description').html(),
     picture: 'http://thiyaku.files.wordpress.com/2011/06/creative_logo_04.jpg'
