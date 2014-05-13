@@ -50,8 +50,8 @@ $(document).ready( function(){
     method: 'feed',
     link: 'http://146.185.151.250:1111/',
     caption: $('.gameinfo .myscore').html() + 
-    $('.gameinfo .score').html() + $('.gameinfo .in') + $('.gameinfo .time').html() + 
-    $('.gameinfo .seconds') + $('.gameinfo .caption').html()
+    $('.gameinfo .score').html() + $('.gameinfo .in').html() + $('.gameinfo .time').html() + 
+    $('.gameinfo .seconds').html() + $('.gameinfo .caption').html()
     ,
     description: $('.gameinfo .description').html(),
     picture: 'http://st.depositphotos.com/1077310/1448/v/950/depositphotos_14483813-Arabic-Letters-Seamless-Pattern.jpg'
