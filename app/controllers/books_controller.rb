@@ -90,7 +90,6 @@ class BooksController < ApplicationController
   end
 
   def submit_score
-    logger.error "scoreeeeeeeeeeeeeeeeeeeeeeeeeee"
     total = 0
     params[:data].to_a.each do |e|
       id = e[1][:id]
@@ -101,7 +100,7 @@ class BooksController < ApplicationController
     end
     time = params[:time].to_i
     total *= 100
-    total /= time
+    total -= (time*10)
     render json: {total: I18n.t(:score_is, total: total, time: time)}
   end
 

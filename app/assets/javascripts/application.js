@@ -50,7 +50,7 @@ $(document).ready( function(){
     method: 'feed',
     link: 'http://146.185.151.250:1111/',
     caption: $('.gameinfo .igot').html() + 
-    $('.gameinfo .score') + $('.gameinfo .in').html() + $('.gameinfo .time') + 
+    $('.gameinfo .score').html() + $('.gameinfo .in').html() + $('.gameinfo .time').html() + 
     $('.gameinfo .caption').html()
     ,
     description: $('.gameinfo .description').html(),
