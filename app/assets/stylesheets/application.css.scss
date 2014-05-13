@@ -10,7 +10,8 @@
  *
  *= require_self
  *= require social-share-button
- *= require_tree .
+ *= require common
+ *= require slider
  */
 
 
@@ -243,11 +244,9 @@ body{
   display: inline-block;
 }
 .alert{
-  position: fixed;
-  width: 53%;
+  margin: 0 auto;
+  width: 50%;
   text-align: center;
-  left: 23%;
-  top: 10px;
   box-shadow: 1px 1px 7px;
 }
 .page-image{

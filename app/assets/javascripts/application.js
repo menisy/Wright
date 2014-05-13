@@ -15,9 +15,10 @@
 //= require bootstrap
 //= require jquery.knob
 //= require photo
+//= require bootstrap-slider
 //= require jquery-fileupload/basic
 //= require social-share-button
-//= require yamli
+
 
 
 
@@ -26,12 +27,33 @@ $(window).load(function(){
 });
 $(document).ready( function(){
 
+  $('.login-butt').click(function(){
+    $('.signin').modal('show');
+  });
+    
+    
+  $('.slider').slider().on('slideStop', function(){
+    speed = $('input.slider').val();
+
+    $.post( "/users/set_speed", {data: speed}, function( data ) {
+    });
+  });
+
+
+  $('.instructions').click(function(){
+    $('.welcome').modal('show');
+  });
+
+
   $('.fb-feed').click(function(){
     FB.ui({
     method: 'feed',
-    link: 'http://146.185.151.250:1111/books/play_random',
-    caption: 'Can you beat my score?',
-    description: 'Can you take the challenge and beat your friends?!',
+    link: 'http://146.185.151.250:1111/',
+    caption: $('.gameinfo .igot').html() + 
+    $('.gameinfo .score') + $('.gameinfo .in').html() + $('.gameinfo .time') + 
+    $('.gameinfo .caption').html() +
+    ,
+    description: $('.gameinfo .description').html(),
     picture: 'http://thiyaku.files.wordpress.com/2011/06/creative_logo_04.jpg'
   }, function(response){});
   });
@@ -80,6 +102,7 @@ $(document).ready( function(){
 
 function start(){
   startTime = new Date().getTime() / 1000;
+  speed = $('.speed').html();
   y = 0;
   gameOver = false;
   max = $('.image-holder').children().length;
@@ -94,7 +117,7 @@ function moveWord(){
     //catchWord();
     clearAndMove();
   }
-  y = y + 8 - currentFactor;
+  y = y + ((8 - currentFactor)* speed/5);
   currentWord.css('top',y+'px');
 }
 
@@ -121,6 +144,8 @@ function clearAndMove(){
 function sendData(arr, time){
   $.post( "/books/submit_score", {data: arr, time: time}, function( data ) {
     $( ".modal-body p" ).html( data.total );
+    $('.gameinfo .score').html(data.total);
+    $('.gameinfo .time').html(data.time);
   });
 }
 function endGame(){
@@ -160,7 +185,7 @@ function moveNewWord(){
   currentWord = $('.image-holder img#'+counter).remove();
   currentFactor = currentWord.width() * 0.3;
   $('.upper-box').append(currentWord);
-  x = Math.random() * 400;
+  x = Math.random() * 500;
   currentWord.css('left', x+'px');
   currentWord.css('top','-20px');
   animation = setInterval(function(){moveWord()}, 100);

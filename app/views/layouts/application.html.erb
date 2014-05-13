@@ -21,8 +21,12 @@
     </script>
     <script type="text/javascript" src="http://api.yamli.com/js/yamli_api.js"></script>
  
+    <% if I18n.locale == :en %>
+      <%= stylesheet_link_tag    "application", media: "all" %>
+    <% else %>
+          <%= stylesheet_link_tag    "arabic", media: "all" %>
+    <% end %>
 
-    <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <meta property="og:title" content="Wright..type!"/>
@@ -34,12 +38,8 @@
   <body>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
-        <ul class="nav nav-pills first-nav">
-          <li>
-            <%= link_to 'Play now!', play_random_books_path, class: 'btn btn-success'  %>
-          </li>
-        </ul>
-        <ul class="nav nav-pills second-nav">
+        
+        <ul class="nav nav-pills second-nav pull-right">
           <% if user_signed_in? %>
             <li class="first expanded">
               <div class="dropdown">
@@ -47,24 +47,66 @@
                   <%= current_user.name %>
                   <span class="caret"></span>
                 <% end %>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu" style="display: none;">
-                  <li><%= link_to "Logout", destroy_user_session_path %></li>
+                <ul class="dropdown-menu" role="menu">
+                  <li><div><span class="glyphicon glyphicon-log-out"></span><%= link_to t(:logout), destroy_user_session_path %></div></li>
                 </ul>
               </div>
             </li>
             <li>
               <%= image_tag current_user.image %>
             </li>
+          <% else %>
+            <li>
+              <%= link_to t(:signin), '#', class: 'login-butt' %>
+            </li>
           <% end %>
+        </ul>
+        <ul class="nav nav-pills mid pull-right">
           <li>
-            
+            <h2>Wright</h2>
           </li>
+        </ul>
+        <ul class="nav nav-pills first-nav pull-left">
+          <li>
+            <%= link_to t(:play_now), play_random_books_path, class: 'btn btn-success'  %>
+          </li>
+          <%= render partial: 'shared/change_local' %>
         </ul>
       </div>
     </nav>
     <div id="main-container">
-      <%= bootstrap_flash %>
+      <div class="alert-wrapper">
+        <%= bootstrap_flash %>
+      </div>
       <%= yield %>
+    </div>
+    <div class="signin modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal" type="button"> × </button>
+            <div class="modal-title centered">
+              <%= t(:signin_message) %>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="centered">
+              <div class="login">
+                <%- imgs = %w(facebook.png twitter.png) %>
+                <p>
+                  <% User.omniauth_providers.each_with_index do |provider, i| %>
+                    <div>
+                      <%= link_to omniauth_authorize_path('user', provider) do %>
+                        <%=image_tag imgs[i] %>
+                      <% end %>
+                    </div>
+                    <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

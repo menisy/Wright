@@ -31,6 +31,16 @@ class User
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
 
+
+
+  ## Local
+
+  field :default_local, type: String, default: 'en'
+
+  ## Speed
+
+  field :default_speed, type: Integer, default: 3
+
   has_many :authorizations
 
   def self.new_with_session(params,session)

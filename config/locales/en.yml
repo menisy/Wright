@@ -20,6 +20,26 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Welcome to "
+  welcome: "Welcome to Wright!"
   books: "Books"
   go: "Go!"
+  language_set: 'Language changed successfully'
+  playing_instructions: 'Type the words as they fall as ((accurately)) and as ((quickly)) as possible, and press ((Enter)) after typing the word.'
+  play_now: 'Play now!'
+  play: 'Play!'
+  keep_score: 'To keep your scores and ranks please sign in using one of the following services'
+  restart: 'Restart'
+  play_again: 'Play again!'
+  calculating_score: 'Calculating score please wait...'
+  score_is: 'Your score is %{total}! Your time is %{time} seconds'
+  challenge_completed: 'Challenge Completed!'
+  share: 'Share it with your friends'
+  instructions: 'Instructions'
+  signin: 'Sign in'
+  signin_message: 'You can sign in using one of the following services to keep your score and ranking'
+  singedin: 'Signed in successfully'
+  logout: 'Logout'
+  igot: 'I got '
+  canyou: 'You think you can beat my score?!'
+  desc: 'Type in the falling words as quickly and as accurately as possible and be the winner among your friends!'
+  in: 'in'

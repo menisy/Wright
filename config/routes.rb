@@ -21,6 +21,13 @@ Wright::Application.routes.draw do
 
   root 'books#play_random'
 
+  resources :users, only: [] do
+    collection do
+      get 'change_local'
+      post 'set_speed'
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
