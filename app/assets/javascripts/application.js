@@ -50,7 +50,7 @@ $(document).ready( function(){
     method: 'feed',
     link: 'http://146.185.151.250:1111/',
     caption: $('.gameinfo .myscore').html() + 
-    $('.gameinfo .score').html() + $('.gameinfo .time').html() + 
+    $('.gameinfo .score').html() + $('.gameinfo .in') + $('.gameinfo .time').html() + 
     $('.gameinfo .caption').html()
     ,
     description: $('.gameinfo .description').html(),
@@ -144,7 +144,7 @@ function clearAndMove(){
 function sendData(arr, time){
   $.post( "/books/submit_score", {data: arr, time: time}, function( data ) {
     $( ".modal-body p" ).html( data.total );
-    $('.gameinfo .score').html(data.score); + $('.gameinfo .in')
+    $('.gameinfo .score').html(data.score);
     $('.gameinfo .time').html(data.time);
   });
 }
