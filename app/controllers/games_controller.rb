@@ -11,7 +11,13 @@ class GamesController < ApplicationController
   end
 
   def index
-    redirect_to play_random_games_path
+    @game = Game.new
+    @lang = 'ara'
+    @words = Word.asc(:played).take(20)
+    @game.words = @words
+    @game.save
+    @words.map(&:inc_played)
+    render 'play'
   end
 
 
