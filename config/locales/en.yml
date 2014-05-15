@@ -29,6 +29,7 @@ en:
   play: 'Play!'
   keep_score: 'To keep your scores and ranks, please sign in using one of the following services'
   restart: 'Restart'
+  start: 'Start'
   play_again: 'Play again!'
   calculating_score: 'Calculating score please wait...'
   score_is: 'Your score is %{total}! Your time is %{time} seconds'
