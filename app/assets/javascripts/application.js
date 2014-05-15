@@ -54,7 +54,7 @@ $(document).ready( function(){
     $('.gameinfo .seconds').html() + $('.gameinfo .caption').html()
     ,
     description: $('.gameinfo .description').html(),
-    picture: 'http://st.depositphotos.com/1077310/1448/v/950/depositphotos_14483813-Arabic-Letters-Seamless-Pattern.jpg'
+    picture: 'http://146.185.151.250:1111/assets/logo-inv-42ce47f6741cfbf8d1969c3fe90ea582.png'
   }, function(response){});
   });
   counter = -1;
