@@ -37,7 +37,7 @@ en:
   share: 'Share it with your friends'
   instructions: 'Instructions'
   signin: 'Sign in'
-  signin_message: 'You can sign in using one of the following services to keep your score and ranking'
+  signin_message: 'You can sign in using Twitter to keep your score and ranking'
   signedin: 'Signed in successfully'
   logout: 'Logout'
   igot: 'I got '
