@@ -50,6 +50,8 @@
             %span.logo-inv
       .modal-body
         .centered
+          %p
+            = t(:intro)
           = image_tag 'inst.png', class: 'inst'
           %p
             =make_bold(t(:playing_instructions))
@@ -57,7 +59,7 @@
       .modal-footer
         .centered
           .login
-            -imgs = %w(facebook.png twitter.png)
+            -imgs = %w(twitter.png)
             %p
               =t(:keep_score)
               -User.omniauth_providers.each_with_index do |provider, i|
