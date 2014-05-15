@@ -61,7 +61,7 @@
           .login
             -imgs = %w(twitter.png)
             %p
-              =t(:keep_score)
+              =t(:signin_message)
               -User.omniauth_providers.each_with_index do |provider, i|
                 %div
                   =link_to omniauth_authorize_path('user', provider) do
