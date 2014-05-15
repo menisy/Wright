@@ -5,6 +5,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 		p env["omniauth.auth"]
 		user = User.from_omniauth(env["omniauth.auth"], current_user)
 		if user.persisted?
+			I18n.locale = user.default_local
 			flash[:notice] = I18n.t(:signedin)
 			sign_in_and_redirect(user)
 		else
