@@ -32,7 +32,7 @@ class GamesController < ApplicationController
       total += score
     end
     time = params[:time].to_i
-    total *= 100
+    total *= 10
     total -= (time*10)
     game.score = total
     game.guesses = params[:data].to_a
