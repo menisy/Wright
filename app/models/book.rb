@@ -46,6 +46,8 @@ class Book
 
   def generate_words
 
+    logger.error "Before tesseract-------------------------"
+
     self.generating = true
     save
 
