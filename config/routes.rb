@@ -6,6 +6,8 @@ Wright::Application.routes.draw do
       get 'generate_words'
       get 'play'
       post 'new_page'
+      get 'rotate_page'
+      get 'remove_page'
     end
   end
 

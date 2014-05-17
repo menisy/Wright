@@ -25,6 +25,12 @@
       <%= f.file_field :attachment, class: 'hidden', id: 'file-upload' %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :two_pages, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :two_pages %>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

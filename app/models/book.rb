@@ -14,6 +14,7 @@ class Book
   field :whole_text
   field :generating, type: Boolean
   field :generated, type: Boolean
+  field :two_pages, type: Boolean
 
   has_mongoid_attached_file :attachment, :styles => { full: '2048x2048>',:medium => "300x300>", :thumb => "100x100>" }
 
@@ -51,6 +52,7 @@ class Book
     e = Tesseract::Engine.new {|e|
       e.language  = lang.to_sym
       e.blacklist = '|'
+      e.page_segmentation_mode = 2 if self.two_pages
     }
 
     logger.error "Initiated tesseract ----------------------"
@@ -86,6 +88,7 @@ class Book
         word.image = open f.filename
         word.image_file_name = "book#{id}word#{i}.png"
         word.save
+        FileUtils.rm(f.filename)
       end
       page.generated = true
       page.save
@@ -97,7 +100,8 @@ class Book
   end
 
   def can_add? page
+    return true if page.nil?
     similar_pages = self.pages.find_by filename: page
-    similar_pages.nil?
+    !similar_pages.present?
   end
 end

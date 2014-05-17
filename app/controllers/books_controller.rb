@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :play, :generate_words, :new_page]
+  before_action :set_book, only: [:remove_page, :rotate_page, :show, :edit, :update, :destroy, :play, :generate_words, :new_page]
 
   before_action :authenticate_admin!
 
@@ -25,7 +25,7 @@ class BooksController < ApplicationController
     Thread.new do
       logger.error 'in thread %%%%%%%%%%%%%%%%%%%%'
       @book.generate_words
-      ActiveRecord::Base.connection.close
+      Mongoid::Sessions.default.disconnect
     end
     #GenWorker.perform_async(@book.id.to_s)
     redirect_to book_path(@book, reload: true), notice: "Words will be generated shortly\nPlease wait till the page reloads!"
@@ -39,6 +39,28 @@ class BooksController < ApplicationController
     @game.words = @words.map(&:id)
     @game.save
     @words.map(&:inc_played)
+  end
+
+  def rotate_page
+    page = @book.pages.find(params[:page_id])
+    image = Magick::Image.read(page.attachment.path).first
+    b = nil
+    if params[:or] == 'anti'
+      b = image.rotate!(-90)
+    else
+      b = image.rotate!(90)
+    end
+    f = b.write("#{Rails.root}/tmp/temp#{page.id}.jpg")
+    page.attachment = open f.filename
+    page.save
+    FileUtils.rm(f.filename)
+    redirect_to :back, notice: 'Rotated successfully'
+  end
+
+  def remove_page
+    page = @book.pages.find(params[:page_id])
+    page.destroy!
+    redirect_to :back, notice: 'Page deleted'
   end
 
   def new_page
@@ -121,7 +143,7 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:name, :reference, :attachment, :lang)
+      params.require(:book).permit(:two_pages, :name, :reference, :attachment, :lang)
     end
 
     def page_params

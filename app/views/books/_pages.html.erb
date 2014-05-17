@@ -2,7 +2,14 @@
   <div class="page-image">
     <%= i+1 %> - <%= image_tag page.attachment %>
   </div>
-  <div class="words">
+  <div class="rot">
+    <%= link_to '<- Rotate', rotate_page_book_path(page.book, page_id: page.id, or: 'clock'), class: 'btn btn-primary' %>
+    <%= link_to 'Rotate ->', rotate_page_book_path(page.book, page_id: page.id, or: 'anti'), class: 'btn btn-primary' %>
+  </div>
+  <div class="remove">
+    <%= link_to 'Delete page', remove_page_book_path(page.book, page_id: page.id), data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+  </div> 
+  <div class="words">`
     <% page.words.each do |word| %>
       <span class="word-container">
         <%= image_tag word.image %>
