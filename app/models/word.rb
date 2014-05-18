@@ -36,21 +36,27 @@ class Word
     save
   end
 
+  def max_guess
+
+  end
+
   def add_guess word
     m = Levenshtein.new(word)
+    found = false
     score = word.length
     guesses.each do |guess|
       st = guess[0]
       dist = m.match(st)
       if dist == 0
         guess[1] = guess[1] + word.length * 2;
-        return word.length * 2
+        score = word.length * 2
       else
         guess[1] -= dist
-        score -= dist
+        score -= dist if not found
       end
     end
-    guesses << [word, score]
+    guesses << [word, score] if not found
+    save
     score
   end
 end
