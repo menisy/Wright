@@ -37,7 +37,15 @@ class Word
   end
 
   def max_guess
-
+    mx = 0;
+    mxIndx = 0;
+    guesses.each_with_index do |g, i|
+      if g[1] > mx
+        mx = g[1]
+        mxIndx = i
+      end
+    end
+    guesses[mxIndx][0]
   end
 
   def add_guess word
