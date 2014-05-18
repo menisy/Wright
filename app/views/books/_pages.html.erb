@@ -13,7 +13,8 @@
     <% page.words.each do |word| %>
       <span class="word-container">
         <%= image_tag word.image %>
-        <%= word.ocr_text %>
+        <%= word.max_guess %>
+        <br>
       </span>
     <% end %>
   </div>

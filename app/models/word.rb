@@ -45,7 +45,7 @@ class Word
         mxIndx = i
       end
     end
-    guesses[mxIndx][0]
+    guesses[mxIndx][0] if !guesses[mxIndx].nil?
   end
 
   def add_guess word
