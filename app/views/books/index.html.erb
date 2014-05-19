@@ -16,7 +16,7 @@
       <tr>
         <td><%= link_to book.name, book_path(book) %></td>
         <td><%= book.reference %></td>
-        <td><%=l book.created_at %></td>
+        <td><%= book.created_at %></td>
         <td>
           <%= link_to "Edit",
                       edit_book_path(book), :class => 'btn btn-mini' %>
