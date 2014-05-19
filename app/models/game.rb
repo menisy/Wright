@@ -11,4 +11,5 @@ class Game
   field :guesses, type: Array
   field :score
   field :time
+  field :ip
 end

@@ -38,6 +38,7 @@ class GamesController < ApplicationController
     game.guesses = params[:data].to_a
     game.time = time
     game.user = current_user if user_signed_in?
+    game.ip = request.env['REMOTE_ADDR']
     game.save
     if user_signed_in?
       current_user.score += total
