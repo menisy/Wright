@@ -8,7 +8,7 @@
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:reference) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -23,7 +23,7 @@
           <%= link_to "Destroy"),
                       book_path(book),
                       :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :data => { :confirm 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
@@ -31,6 +31,6 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to "New",
             new_book_path,
             :class => 'btn btn-primary' %>
