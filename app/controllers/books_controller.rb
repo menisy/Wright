@@ -18,15 +18,22 @@ class BooksController < ApplicationController
     @pages = @book.pages
   end
 
+  def verify_word
+    @word = Word.find(params[:word_id])
+    valid = params[:valid]
+    @word.verified = !valid.blank?
+    @word.save
+  end
+
   def generate_words
     @book.generating = true
     @book.save
     logger.error 'in generation *********************'
-    Thread.new do
+    #Thread.new do
       logger.error 'in thread %%%%%%%%%%%%%%%%%%%%'
       @book.generate_words
-      Mongoid::Sessions.default.disconnect
-    end
+    #  Mongoid::Sessions.default.disconnect
+    #end
     #GenWorker.perform_async(@book.id.to_s)
     redirect_to book_path(@book, reload: true), notice: "Words will be generated shortly\nPlease wait till the page reloads!"
   end

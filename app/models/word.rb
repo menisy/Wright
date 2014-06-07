@@ -10,7 +10,7 @@ class Word
   field :accuracy, type: Integer
   field :ocr_text
   field :guesses, type: Array, default: []
-  field :validated, type: Boolean
+  field :verified, type: Boolean
   field :filename
   field :played, type: Integer, default: 0
   field :lang
@@ -25,6 +25,10 @@ class Word
 
   def self.lang lang
     where(lang: lang)
+  end
+
+  def self.verified
+    where(verified: true)
   end
 
   def set_lang

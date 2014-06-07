@@ -11,11 +11,19 @@
   </div> 
   <div class="words">`
     <% page.words.each do |word| %>
-      <span class="word-container">
+      <span class="word-container" id="<%= word.id.to_s %>">
         <%= image_tag word.image %>
         <%= word.max_guess %>
+        <% unless word.max_guess.blank? %>
+          <% unless word.verified %>
+            <%= link_to "Correct", verify_word_book_path(word_id: word.id, id: page.book.id, valid: "true"), class: 'btn btn-success', remote: true %>
+          <% else %>
+            <%= link_to "Wrong", verify_word_book_path(word_id: word.id, id: page.book.id, valid: ""), class: 'btn btn-danger', remote: true %>
+          <% end %>
+        <% end %>
         <br>
       </span>
+      <br>
     <% end %>
   </div>
   <br><br>

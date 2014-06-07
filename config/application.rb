@@ -25,7 +25,7 @@ module Wright
     # config.i18n.default_locale = :de
     config.i18n.enforce_available_locales = false
     config.i18n.available_locales = ["ar"]
-    config.i18n.default_locale = :ar
+    config.i18n.default_locale = :en
     social_keys = File.join(Rails.root, 'config', 'social_keys.yml')
     CONFIG = HashWithIndifferentAccess.new(YAML::load(IO.read(social_keys)))[Rails.env]
     CONFIG.each do |k,v|

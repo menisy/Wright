@@ -8,6 +8,7 @@ Wright::Application.routes.draw do
       post 'new_page'
       get 'rotate_page'
       get 'remove_page'
+      get 'verify_word'
     end
   end
 
