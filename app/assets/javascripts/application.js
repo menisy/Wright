@@ -24,14 +24,18 @@
 
 $(window).load(function(){
   dropFlash();
+  if($('.first-time').length > 0){
+      $('.welcome').modal('show');
+  }
 });
 $(document).ready( function(){
 
   $('.login-butt').click(function(){
     $('.signin').modal('show');
   });
-    
-    
+
+
+
   $('.slider').slider().on('slideStop', function(){
     speed = $('input.slider').val();
 
@@ -49,8 +53,8 @@ $(document).ready( function(){
     FB.ui({
     method: 'feed',
     link: 'http://146.185.151.250:1111/',
-    caption: $('.gameinfo .myscore').html() + 
-    $('.gameinfo .score').html() + $('.gameinfo .in').html() + $('.gameinfo .time').html() + 
+    caption: $('.gameinfo .myscore').html() +
+    $('.gameinfo .score').html() + $('.gameinfo .in').html() + $('.gameinfo .time').html() +
     $('.gameinfo .seconds').html() + $('.gameinfo .caption').html()
     ,
     description: $('.gameinfo .description').html(),
@@ -73,9 +77,9 @@ $(document).ready( function(){
 
   $('.start').on('click', function(e){
     e.preventDefault();
-    
+
     $(this).fadeOut(200, function(){
-      $('.restart').removeClass('hide');      
+      $('.restart').removeClass('hide');
     });
 
     $(".one").animate({opacity: 1.0, left: +100}, 600).animate({opacity: 0.0, left: +100}, 400).queue(function(){

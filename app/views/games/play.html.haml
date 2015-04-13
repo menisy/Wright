@@ -4,7 +4,7 @@
 
 .game-container
   .upper-box
-    
+
   - css = @lang == 'ara' ? 'rtl' : ''
   .text-box
     = text_field_tag nil, nil, id: 'input', class: css
@@ -13,7 +13,7 @@
   .slider-container
     .white
       =t(:speed)
-    %input{type:"text", class:"slider", :'data-slider-min' => "1", :'data-slider-max' => "5", :'data-slider-step' => "-1", :'data-slider-value' => "#{get_speed}", :'data-slider-orientation' => "vertical", :'data-slider-selection' => "after", :'data-slider-tooltip' => "hide"}
+    %input{type:"text", class:"slider hide", :'data-slider-min' => "1", :'data-slider-max' => "5", :'data-slider-step' => "-1", :'data-slider-value' => "#{get_speed}", :'data-slider-orientation' => "vertical", :'data-slider-selection' => "after", :'data-slider-tooltip' => "hide"}
 
 %span.speed.hide
   =get_speed
@@ -75,11 +75,11 @@
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
         .centered
-          %h3.modal-title 
+          %h3.modal-title
             =t(:challenge_completed)
       .modal-body
         .centered
-          %p 
+          %p
             = t(:calculating_score)
           =link_to t(:play_again), play_random_games_path, class: 'btn btn-success'
       .modal-footer
@@ -110,6 +110,5 @@
 
 -unless current_user || session[:first]
   -session[:first] = true
-  :javascript
-      $('.welcome').modal('show');
+  .first-time.hide
 
